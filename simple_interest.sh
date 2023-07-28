@@ -1,29 +1,12 @@
-#!/bin/bash
+def calculate_simple_interest(principal, rate, time):
+    interest = (principal * rate * time) / 100
+    return interest
 
-# Function to calculate the simple interest
-calculate_simple_interest() {
-  principal=$1
-  rate=$2
-  time=$3
+if __name__ == "__main__":
+    principal = float(input("Enter the principal amount: "))
+    rate = float(input("Enter the interest rate (in percentage): "))
+    time = float(input("Enter the time period (in years): "))
 
-  interest=$(echo "scale=2; $principal * $rate * $time / 100" | bc)
-  echo "Simple Interest: $interest"
-}
+    simple_interest = calculate_simple_interest(principal, rate, time)
 
-# Main script starts here
-echo "Simple Interest Calculator"
-echo "--------------------------"
-
-# Read input from the user
-read -p "Enter the principal amount: " principal
-read -p "Enter the interest rate (in percentage): " rate
-read -p "Enter the time period (in years): " time
-
-# Check if the input is valid (numeric values)
-if ! [[ "$principal" =~ ^[0-9]+(\.[0-9]+)?$ ]] || ! [[ "$rate" =~ ^[0-9]+(\.[0-9]+)?$ ]] || ! [[ "$time" =~ ^[0-9]+(\.[0-9]+)?$ ]]; then
-  echo "Error: Please enter valid numeric values for principal, rate, and time."
-  exit 1
-fi
-
-# Calculate and display the simple interest
-calculate_simple_interest "$principal" "$rate" "$time"
+    print("Simple Interest:", simple_interest)
